@@ -160,4 +160,14 @@ void alterarContato(Agenda *agenda, const char *telefone, int tipoContato) {
         printf("Contato nao encontrado.\n");
     }
 }
+void salvarAgenda(const Agenda *agenda) {
+    FILE *arquivo = fopen("agenda.bin", "wb");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
 
+    fwrite(agenda, sizeof(Agenda), 1, arquivo);
+    fclose(arquivo);
+    printf("Agenda salva com sucesso!\n");
+}
