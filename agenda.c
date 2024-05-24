@@ -52,3 +52,24 @@ void adicionarContato(Agenda *agenda, int tipoContato) {
     (*quantidade)++;
     printf("Contato adicionado com sucesso!\n");
 }
+void listarContatos(const Agenda *agenda, int tipoContato) {
+    const Contato *contatoArray;
+    int quantidade;
+
+    if (tipoContato == 1) {
+        contatoArray = agenda->contatosPessoais;
+        quantidade = agenda->quantidadePessoais;
+    } else {
+        contatoArray = agenda->contatosTrabalho;
+        quantidade = agenda->quantidadeTrabalho;
+    }
+
+    printf("\nLista de Contatos:\n");
+    if (quantidade == 0) {
+        printf("Nenhum contato na lista.\n");
+    } else {
+        for (int i = 0; i < quantidade; i++) {
+            printf("%s - %s - %s\n", contatoArray[i].nome, contatoArray[i].telefone, contatoArray[i].email);
+        }
+    }
+}
