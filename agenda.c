@@ -73,3 +73,35 @@ void listarContatos(const Agenda *agenda, int tipoContato) {
         }
     }
 }
+void deletarContato(Agenda *agenda, const char *telefone, int tipoContato) {
+    Contato *contatoArray;
+    int *quantidade;
+
+    if (tipoContato == 1) {
+        contatoArray = agenda->contatosPessoais;
+        quantidade = &agenda->quantidadePessoais;
+    } else {
+        contatoArray = agenda->contatosTrabalho;
+        quantidade = &agenda->quantidadeTrabalho;
+    }
+
+    int i, encontrado = 0;
+    for (i = 0; i < *quantidade; i++) {
+        if (strcmp(contatoArray[i].telefone, telefone) == 0) {
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (encontrado) {
+        for (int j = i; j < *quantidade - 1; j++) {
+            strcpy(contatoArray[j].nome, contatoArray[j + 1].nome);
+            strcpy(contatoArray[j].telefone, contatoArray[j + 1].telefone);
+            strcpy(contatoArray[j].email, contatoArray[j + 1].email);
+        }
+        (*quantidade)--;
+        printf("Contato deletado com sucesso!\n");
+    } else {
+        printf("Contato nao encontrado.\n");
+    }
+}
