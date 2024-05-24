@@ -18,3 +18,12 @@ typedef struct {
     int quantidadePessoais;
     int quantidadeTrabalho;
 } Agenda;
+
+void adicionarContato(Agenda *agenda, int tipoContato);
+void listarContatos(const Agenda *agenda, int tipoContato);
+void deletarContato(Agenda *agenda, const char *telefone, int tipoContato);
+void alterarContato(Agenda *agenda, const char *telefone, int tipoContato);
+void salvarAgenda(const Agenda *agenda);
+void carregarAgenda(Agenda *agenda);
+
+#endif
