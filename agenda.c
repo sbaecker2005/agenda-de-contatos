@@ -166,6 +166,12 @@ void salvarAgenda(const Agenda *agenda) {
         printf("Erro ao abrir o arquivo.\n");
         return;
     }
+
+    fwrite(agenda, sizeof(Agenda), 1, arquivo);
+    fclose(arquivo);
+    printf("Agenda salva com sucesso!\n");
+}
+
 void carregarAgenda(Agenda *agenda) {
     FILE *arquivo = fopen("agenda.bin", "rb");
     if (arquivo == NULL) {
@@ -176,9 +182,4 @@ void carregarAgenda(Agenda *agenda) {
     fread(agenda, sizeof(Agenda), 1, arquivo);
     fclose(arquivo);
     printf("Agenda carregada com sucesso!\n");
-}
-
-    fwrite(agenda, sizeof(Agenda), 1, arquivo);
-    fclose(arquivo);
-    printf("Agenda salva com sucesso!\n");
-}
+    }
