@@ -105,3 +105,15 @@ void deletarContato(Agenda *agenda, const char *telefone, int tipoContato) {
         printf("Contato nao encontrado.\n");
     }
 }
+void alterarContato(Agenda *agenda, const char *telefone, int tipoContato) {
+    Contato *contatoArray;
+    int *quantidade;
+
+    if (tipoContato == 1) {
+        contatoArray = agenda->contatosPessoais;
+        quantidade = &agenda->quantidadePessoais;
+    } else {
+        contatoArray = agenda->contatosTrabalho;
+        quantidade = &agenda->quantidadeTrabalho;
+    }
+
