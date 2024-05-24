@@ -117,3 +117,47 @@ void alterarContato(Agenda *agenda, const char *telefone, int tipoContato) {
         quantidade = &agenda->quantidadeTrabalho;
     }
 
+    int i, encontrado = 0;
+    for (i = 0; i < *quantidade; i++) {
+        if (strcmp(contatoArray[i].telefone, telefone) == 0) {
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (encontrado) {
+        Contato novoContato;
+        printf("\nAlterando Contato:\n");
+        printf("Novo Nome: ");
+        scanf("%s", novoContato.nome);
+        printf("Novo Telefone: ");
+        scanf("%s", novoContato.telefone);
+        printf("Novo Email: ");
+        scanf("%s", novoContato.email);
+
+        if (strstr(novoContato.email, "@") == NULL) {
+            printf("Email invalido! O email deve conter '@'.\n");
+            return;
+        }
+
+        for (int j = 0; j < agenda->quantidadePessoais; j++) {
+            if (strcmp(agenda->contatosPessoais[j].telefone, novoContato.telefone) == 0 && j != i) {
+                printf("Ja existe um contato com esse telefone!\n");
+                return;
+            }
+        }
+
+        for (int j = 0; j < agenda->quantidadeTrabalho; j++) {
+            if (strcmp(agenda->contatosTrabalho[j].telefone, novoContato.telefone) == 0 && j != i) {
+                printf("Ja existe um contato com esse telefone!\n");
+                return;
+            }
+        }
+
+        contatoArray[i] = novoContato;
+        printf("Contato alterado com sucesso!\n");
+    } else {
+        printf("Contato nao encontrado.\n");
+    }
+}
+
