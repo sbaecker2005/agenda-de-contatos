@@ -33,3 +33,22 @@ void adicionarContato(Agenda *agenda, int tipoContato) {
         printf("Email invalido! O email deve conter '@'.\n");
         return;
     }
+
+    for (int i = 0; i < agenda->quantidadePessoais; i++) {
+        if (strcmp(agenda->contatosPessoais[i].telefone, novoContato.telefone) == 0) {
+            printf("Ja existe um contato com esse telefone!\n");
+            return;
+        }
+    }
+
+    for (int i = 0; i < agenda->quantidadeTrabalho; i++) {
+        if (strcmp(agenda->contatosTrabalho[i].telefone, novoContato.telefone) == 0) {
+            printf("Ja existe um contato com esse telefone!\n");
+            return;
+        }
+    }
+
+    contatoArray[*quantidade] = novoContato;
+    (*quantidade)++;
+    printf("Contato adicionado com sucesso!\n");
+}
